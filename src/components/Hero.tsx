@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Download, Github, Linkedin } from "lucide-react";
 import { BsInstagram } from "react-icons/bs";
@@ -114,7 +114,7 @@ const Hero = () => {
               }}
               className="inline-block"
             >
-              Front-End Developer
+              Fullstack Developer
             </motion.span>
             <motion.span
               animate={{ opacity: [0, 0, 1, 1, 0] }}
@@ -124,9 +124,9 @@ const Hero = () => {
                 delay: 2,
                 times: [0, 0.3, 0.5, 0.7, 1],
               }}
-              className="inline-block"
+              className="inline-flex items-center gap-1"
             >
-              / Fullstack Developer
+              / Vue.JS Specialist
             </motion.span>
           </motion.div>
 

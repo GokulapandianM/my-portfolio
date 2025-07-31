@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Download, Github, Linkedin, Mail } from "lucide-react";
+import { MapPin, Download, Github, Linkedin } from "lucide-react";
+import { BsInstagram } from "react-icons/bs";
 
 const Hero = () => {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -163,28 +164,28 @@ const Hero = () => {
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                href="mailto:gokulapandianm@gmail.com"
-                className="p-3 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
+                href="https://github.com/GokulapandianM"
+                className="p-3 bg-slate-800 dark:bg-slate-700 text-white rounded-lg hover:bg-slate-700 dark:hover:bg-slate-600 transition-colors"
               >
-                <Mail size={20} />
+                <Github size={20} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 href="https://www.linkedin.com/in/gokulapandian-m-a0963022a/"
-                target="_blank"
-                className="p-3 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
+                className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <Linkedin size={20} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                href="https://github.com/GokulapandianM"
+                href="https://www.instagram.com/_mr.gokul_7/"
                 target="_blank"
-                className="p-3 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
+                rel="noopener noreferrer"
+                className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
               >
-                <Github size={20} />
+                <BsInstagram size={20} />
               </motion.a>
             </div>
           </motion.div>

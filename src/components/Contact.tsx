@@ -1,38 +1,43 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { Mail, MapPin, Phone, Send, Github, Linkedin } from "lucide-react";
+import { BsInstagram } from "react-icons/bs";
 
 const Contact = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = React.useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [submitMessage, setSubmitMessage] = React.useState('');
+  const [submitMessage, setSubmitMessage] = React.useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitMessage('Thank you for your message! I\'ll get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-      
+      setSubmitMessage(
+        "Thank you for your message! I'll get back to you soon."
+      );
+      setFormData({ name: "", email: "", message: "" });
+
       // Clear success message after 5 seconds
-      setTimeout(() => setSubmitMessage(''), 5000);
+      setTimeout(() => setSubmitMessage(""), 5000);
     }, 2000);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -42,53 +47,53 @@ const Contact = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
-    }
+      opacity: 1,
+    },
   };
 
   return (
-    <section id="contact" ref={ref} className="py-20 bg-white dark:bg-slate-900">
+    <section
+      id="contact"
+      ref={ref}
+      className="py-20 bg-white dark:bg-slate-900"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.div
-            variants={itemVariants}
-            className="text-center mb-16"
-          >
+          <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
               Let's Work Together
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto mb-6"></div>
             <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.
+              I'm always open to discussing new opportunities, interesting
+              projects, or just having a chat about technology.
             </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <motion.div
-              variants={itemVariants}
-              className="space-y-8"
-            >
+            <motion.div variants={itemVariants} className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                   Get in Touch
                 </h3>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
-                  Whether you have a project in mind, want to collaborate, or just want to say hello, 
-                  I'd love to hear from you. Let's create something amazing together!
+                  Whether you have a project in mind, want to collaborate, or
+                  just want to say hello, I'd love to hear from you. Let's
+                  create something amazing together!
                 </p>
               </div>
 
@@ -101,8 +106,12 @@ const Contact = () => {
                     <Mail size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white">Email</h4>
-                    <p className="text-slate-600 dark:text-slate-300">gokulapandianm@gmail.com</p>
+                    <h4 className="font-semibold text-slate-900 dark:text-white">
+                      Email
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-300">
+                      gokulapandianm@gmail.com
+                    </p>
                   </div>
                 </motion.div>
 
@@ -114,8 +123,12 @@ const Contact = () => {
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white">Location</h4>
-                    <p className="text-slate-600 dark:text-slate-300">Chennai, India</p>
+                    <h4 className="font-semibold text-slate-900 dark:text-white">
+                      Location
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-300">
+                      Chennai, India
+                    </p>
                   </div>
                 </motion.div>
 
@@ -127,8 +140,12 @@ const Contact = () => {
                     <Phone size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white">Response Time</h4>
-                    <p className="text-slate-600 dark:text-slate-300">Usually within 24 hours</p>
+                    <h4 className="font-semibold text-slate-900 dark:text-white">
+                      Response Time
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-300">
+                      Usually within 24 hours
+                    </p>
                   </div>
                 </motion.div>
               </div>
@@ -141,7 +158,7 @@ const Contact = () => {
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    href="#"
+                    href="https://github.com/GokulapandianM"
                     className="p-3 bg-slate-800 dark:bg-slate-700 text-white rounded-lg hover:bg-slate-700 dark:hover:bg-slate-600 transition-colors"
                   >
                     <Github size={20} />
@@ -149,7 +166,7 @@ const Contact = () => {
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    href="#"
+                    href="https://www.linkedin.com/in/gokulapandian-m-a0963022a/"
                     className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     <Linkedin size={20} />
@@ -157,10 +174,12 @@ const Contact = () => {
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    href="#"
-                    className="p-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition-colors"
+                    href="https://www.instagram.com/_mr.gokul_7/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
                   >
-                    <Twitter size={20} />
+                    <BsInstagram size={20} />
                   </motion.a>
                 </div>
               </div>
@@ -187,7 +206,10 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                  >
                     Your Name
                   </label>
                   <motion.input
@@ -204,7 +226,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                  >
                     Email Address
                   </label>
                   <motion.input
@@ -221,7 +246,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                  >
                     Message
                   </label>
                   <motion.textarea

@@ -1,29 +1,51 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Download, Github, Linkedin, Mail } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { MapPin, Download, Github, Linkedin, Mail } from "lucide-react";
 
 const Hero = () => {
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
+      opacity: 1,
+    },
+  };
+
+  const handleResumeDownload = async () => {
+    setIsDownloading(true);
+
+    try {
+      const link = document.createElement("a");
+      link.href = "/gokulapandian-resume-update.pdf";
+      link.download = "Gokulapandian_M_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Download failed:", error);
+    } finally {
+      setTimeout(() => setIsDownloading(false), 1000);
     }
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800"
+    >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-300/20 dark:bg-blue-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -38,24 +60,23 @@ const Hero = () => {
           animate="visible"
           className="text-center"
         >
-          <motion.div
-            variants={itemVariants}
-            className="mb-6"
-          >
+          <motion.div variants={itemVariants} className="mb-6">
             <motion.div
-              animate={{ 
+              animate={{
                 scale: [1, 1.02, 1],
-                rotate: [0, 1, 0]
+                rotate: [0, 1, 0],
               }}
-              transition={{ 
+              transition={{
                 duration: 4,
                 repeat: Infinity,
-                repeatType: "reverse"
+                repeatType: "reverse",
               }}
               className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 p-1"
             >
               <div className="w-full h-full rounded-full bg-white dark:bg-slate-800 flex items-center justify-center">
-                <span className="text-4xl font-bold text-slate-800 dark:text-white">GM</span>
+                <span className="text-4xl font-bold text-slate-800 dark:text-white">
+                  GM
+                </span>
               </div>
             </motion.div>
           </motion.div>
@@ -65,13 +86,13 @@ const Hero = () => {
             className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-4"
           >
             <motion.span
-              animate={{ 
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
-              transition={{ 
+              transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
               className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-300% bg-clip-text text-transparent"
             >
@@ -85,10 +106,10 @@ const Hero = () => {
           >
             <motion.span
               animate={{ opacity: [0, 1, 1, 0] }}
-              transition={{ 
+              transition={{
                 duration: 4,
                 repeat: Infinity,
-                times: [0, 0.3, 0.7, 1]
+                times: [0, 0.3, 0.7, 1],
               }}
               className="inline-block"
             >
@@ -96,11 +117,11 @@ const Hero = () => {
             </motion.span>
             <motion.span
               animate={{ opacity: [0, 0, 1, 1, 0] }}
-              transition={{ 
+              transition={{
                 duration: 4,
                 repeat: Infinity,
                 delay: 2,
-                times: [0, 0.3, 0.5, 0.7, 1]
+                times: [0, 0.3, 0.5, 0.7, 1],
               }}
               className="inline-block"
             >
@@ -130,12 +151,14 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center"
+              onClick={handleResumeDownload}
+              disabled={isDownloading}
+              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center disabled:opacity-70"
             >
               <Download size={20} className="mr-2" />
-              Download Resume
+              {isDownloading ? "Downloading..." : "Download Resume"}
             </motion.button>
-            
+
             <div className="flex items-center gap-4">
               <motion.a
                 whileHover={{ scale: 1.1 }}
@@ -148,7 +171,8 @@ const Hero = () => {
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                href="#"
+                href="https://www.linkedin.com/in/gokulapandian-m-a0963022a/"
+                target="_blank"
                 className="p-3 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
               >
                 <Linkedin size={20} />
@@ -156,7 +180,8 @@ const Hero = () => {
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                href="#"
+                href="https://github.com/GokulapandianM"
+                target="_blank"
                 className="p-3 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
               >
                 <Github size={20} />
@@ -167,20 +192,20 @@ const Hero = () => {
           <motion.div
             variants={itemVariants}
             animate={{ y: [0, 10, 0] }}
-            transition={{ 
+            transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             className="text-slate-400 dark:text-slate-600"
           >
             <div className="w-6 h-10 border-2 border-current rounded-full mx-auto relative">
               <motion.div
                 animate={{ y: [0, 12, 0] }}
-                transition={{ 
+                transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 className="w-1 h-3 bg-current rounded-full absolute left-1/2 top-2 transform -translate-x-1/2"
               ></motion.div>
